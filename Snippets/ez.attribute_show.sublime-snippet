@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[\{\$${1:node}|attribute( show, ${2:2} )\}]]></content>
+    <tabTrigger>show</tabTrigger>
+    <scope>source.tpl</scope>
+    <description>{...|attribute( show )}</description>
+</snippet>

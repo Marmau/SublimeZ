@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[{literal}
+    ${0:\{* code... *\}}
+{/literal}]]></content>
+    <tabTrigger>literal</tabTrigger>
+    <scope>source.tpl</scope>
+    <description>{literal}{/literal}</description>
+</snippet>

@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[\{if ${1:condition}}
+    ${0:\{* code... *\}}
+\{/if\}]]></content>
+    <tabTrigger>if</tabTrigger>
+    <scope>source.tpl</scope>
+    <description>if...</description>
+</snippet>

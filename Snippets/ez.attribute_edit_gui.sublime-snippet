@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[\{attribute_edit_gui attribute=\$${1:attribute}\}${0}]]></content>
+    <tabTrigger>attribute_edit_gui</tabTrigger>
+    <scope>source.tpl</scope>
+    <description>{attribute_edit_gui attribute=$attribute args=...}</description>
+</snippet>

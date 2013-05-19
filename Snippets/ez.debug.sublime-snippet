@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[\{debug-log var=\$${1:object} msg='Debug: ${2:Object debug}'\}]]></content>
+    <tabTrigger>debug</tabTrigger>
+    <scope>source.tpl</scope>
+    <description>{debug-log var=$object msg='Debug: Object debug'}</description>
+</snippet>

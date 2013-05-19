@@ -9,5 +9,5 @@
 {/switch}]]></content>
     <tabTrigger>switch</tabTrigger>
     <scope>source.tpl</scope>
-    <description>{switch match=…}</description>
+    <description>{switch match=...}</description>
 </snippet>

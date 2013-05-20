@@ -1,7 +1,7 @@
-eZ Publish Syntax for Sublime Text 2
+SublimeZ for Sublime Text 2
 ==========
 
-eZ Publish template language support for Sublime Text 2
+Smarty Template, INI settings files support Sublime Text 2
 
 
 # Installation

@@ -15,104 +15,8 @@
 	<key>patterns</key>
 	<array>
 		<dict>
-			<key>match</key>
-			<string>\b(while|for})\b</string>
-			<key>name</key>
-			<string>markup.bold.tpl</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>\b(as|def|else|elseif|foreach|if|switch|while|for|let|literal|section|section-else|undef)\b</string>
-			<key>name</key>
-			<string>keyword.control.tpl</string>
-		</dict>
-		<dict>
-			<key>begin</key>
-			<string>"</string>
-			<key>end</key>
-			<string>"</string>
-			<key>name</key>
-			<string>string.quoted.double.tpl</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>match</key>
-					<string>\\(\$|`|"|\|\n)</string>
-					<key>name</key>
-					<string>constant.character.escape.tpl</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#variable</string>
-				</dict>
-			</array>
-		</dict>
-		<dict>
-			<key>begin</key>
-			<string>'</string>
-			<key>end</key>
-			<string>'</string>
-			<key>name</key>
-			<string>string.quoted.single.tpl</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>match</key>
-					<string>\\.</string>
-					<key>name</key>
-					<string>constant.character.escaped.untitled</string>
-				</dict>
-			</array>
-			<key>swallow</key>
-			<string>\\.</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>\b(append-block|attribute_view_gui|cache-block|case|def|do|if|else|elseif|for|foreach|node_view_gui|switch|section|set-block|set|undef|while)\b</string>
-			<key>name</key>
-			<string>keyword.control.tpl</string>
-		</dict>
-		<!-- <dict>
-			<key>match</key>
-			<string>\b(begins_with|capture|concat|config_load|cycle|debug-accumulator|debug-log|debug-timing-point|debug-trace|expiry|ezcss_load|ezcss_require|ezini|ezscript_require|ezscript_load|fetch|first_set|hash|i18n|include|insert|is_array|is_boolean|is_class|is_float|is_integer|is_null|is_numeric|is_object|is_set|is_string|is_unset|literal|match|math|strip_tags|rdelim|ldelim|urlencode|html_[a-z_]*)\b</string>
-			<key>name</key>
-			<string>support.function.built-in.tpl</string>
-		</dict> -->
-		<dict>
-			<key>match</key>
-			<string>\b(and|or|eq|ne|gt|lt|ge|le|null|not|even|odd|not|mod|div|by|as|max|offset|reverse|sequence)\b</string>
-			<key>name</key>
-			<string>keyword.operator.other.tpl</string>
-		</dict>
-		<!-- <dict>
-			<key>match</key>
-			<string>\b(append|array|attribute|break|contains|continue|datetime|downcase|count|date_format|default|delimiter|explode|extract|ezhttp|ezhttp_hasvariable|ezimage|ezurl|ezroot|float|get_class|get_type|implode|indent|int|merge|nl2br|prepend|replace|simplify|skip|shorten|string_format|strip_tags|strip|trim|upcase|variable|wash|inc|sub|true|false)\b</string>
-			<key>name</key>
-			<string>support.function.variable-modifier.tpl</string>
-		</dict> -->
-		<dict>
-			<key>match</key>
-			<string> (?:([-_a-zA-Z0-9]+)((:)))?([-_a-zA-Z0-9]+)=</string>
-			<key>captures</key>
-			<dict>
-				<key>4</key>
-				<dict>
-					<key>name</key>
-					<string>entity.other.attribute-name.tpl</string>
-				</dict>
-			</dict>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>\b([a-zA-Z0-9]|_)+</string>
-			<key>name</key>
-			<string>support.function.built-in.tpl</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>\$+[a-zA-Z0-9\.-_\[\]:]*</string>
-			<key>name</key>
-			<string>variable.tpl</string>
+			<key>include</key>
+			<string>text.xml</string>
 		</dict>
 		<dict>
 			<key>begin</key>
@@ -121,6 +25,35 @@
 			<string>\*}</string>
 			<key>name</key>
 			<string>comment.block.tpl</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>{</string>
+			<key>end</key>
+			<string>}</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#attribute</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#function</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#singlequote</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#doublequote</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#ezsmarty</string>
+				</dict>
+			</array>
 		</dict>
 		<dict>
 			<key>begin</key>
@@ -193,17 +126,123 @@
 			<key>name</key>
 			<string>constant.numeric.tpl</string>
 		</dict>
-		<!-- <dict>
-			<key>include</key>
-			<string>text.html.basic</string>
-		</dict> -->
-		<dict>
-			<key>include</key>
-			<string>text.xml</string>
-		</dict>
 	</array>
 	<key>repository</key>
 	<dict>
+		<key>attribute</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string> (\w+)=</string>
+					<key>name</key>
+					<string>entity.other.attribute-name.tpl</string>
+				</dict>
+			</array>
+		</dict>
+		<key>doublequote</key>
+		<dict>
+			<key>begin</key>
+			<string>"</string>
+			<key>end</key>
+			<string>"</string>
+			<key>name</key>
+			<string>string.quoted.double.tpl</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\\(\$|`|"|\|\n)</string>
+					<key>name</key>
+					<string>constant.character.escape.tpl</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#variable</string>
+				</dict>
+			</array>
+		</dict>
+		<key>ezsmarty</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\b(as|def|else|elseif|foreach|if|switch|while|for|let|literal|section|section-else|undef)\b</string>
+					<key>name</key>
+					<string>keyword.control.tpl</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(append-block|attribute_view_gui|cache-block|case|def|do|if|else|elseif|for|foreach|node_view_gui|switch|section|set-block|set|undef|while)\b</string>
+					<key>name</key>
+					<string>keyword.control.tpl</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(and|or|eq|ne|gt|lt|ge|le|null|not|even|odd|not|mod|div|by|as|max|offset|reverse|sequence)\b</string>
+					<key>name</key>
+					<string>keyword.operator.other.tpl</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\$+[a-zA-Z0-9\.-_\[\]:]*</string>
+					<key>name</key>
+					<string>variable.tpl</string>
+				</dict>
+			</array>
+		</dict>
+		<key>function</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>support.function.built-in.tpl</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>\b(\w+)\(</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>support.function.built-in.tpl</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>\b\|(\w+)</string>
+				</dict>
+			</array>
+		</dict>
+		<key>singlequote</key>
+		<dict>
+			<key>begin</key>
+			<string>'</string>
+			<key>end</key>
+			<string>'</string>
+			<key>name</key>
+			<string>string.quoted.single.tpl</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\\.</string>
+					<key>name</key>
+					<string>constant.character.escaped.untitled</string>
+				</dict>
+			</array>
+			<key>swallow</key>
+			<string>\\.</string>
+		</dict>
 		<key>variable</key>
 		<dict>
 			<key>patterns</key>

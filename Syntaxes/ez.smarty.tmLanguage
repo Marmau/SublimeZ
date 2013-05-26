@@ -16,109 +16,15 @@
 	<array>
 		<dict>
 			<key>include</key>
+			<string>#ezsmarty</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#insidexml</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>text.xml</string>
-		</dict>
-		<dict>
-			<key>begin</key>
-			<string>{\*</string>
-			<key>end</key>
-			<string>\*}</string>
-			<key>name</key>
-			<string>comment.block.tpl</string>
-		</dict>
-		<dict>
-			<key>begin</key>
-			<string>{</string>
-			<key>end</key>
-			<string>}</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>#attribute</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#function</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#singlequote</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#doublequote</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#ezsmarty</string>
-				</dict>
-			</array>
-		</dict>
-		<dict>
-			<key>begin</key>
-			<string>{(literal)}</string>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.control.tpl</string>
-				</dict>
-			</dict>
-			<key>contentName</key>
-			<string>text.html.basic.literal.tpl</string>
-			<key>end</key>
-			<string>{/(literal)}</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>text.html.basic</string>
-				</dict>
-			</array>
-		</dict>
-		<dict>
-			<key>begin</key>
-			<string>(?:^\s+)?&lt;((?i:style))\b(?![^&gt;]*/&gt;)</string>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>entity.name.tag.html</string>
-				</dict>
-				<key>2</key>
-				<dict>
-					<key>name</key>
-					<string>entity.name.tag.html</string>
-				</dict>
-				<key>3</key>
-				<dict>
-					<key>name</key>
-					<string>entity.name.tag.html</string>
-				</dict>
-			</dict>
-			<key>contentName</key>
-			<string>source.css.embedded.html.tpl</string>
-			<key>end</key>
-			<string>&lt;/((?i:style))&gt;(?:\s*\n)?</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>begin</key>
-					<string>&gt;</string>
-					<key>end</key>
-					<string>(?=&lt;/(?i:style))</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>source.tpl</string>
-						</dict>
-					</array>
-				</dict>
-			</array>
 		</dict>
 		<dict>
 			<key>match</key>
@@ -134,10 +40,16 @@
 			<key>patterns</key>
 			<array>
 				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>entity.other.attribute-name.tpl</string>
+						</dict>
+					</dict>
 					<key>match</key>
 					<string> (\w+)=</string>
-					<key>name</key>
-					<string>entity.other.attribute-name.tpl</string>
 				</dict>
 			</array>
 		</dict>
@@ -168,28 +80,84 @@
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>match</key>
-					<string>\b(as|def|else|elseif|foreach|if|switch|while|for|let|literal|section|section-else|undef)\b</string>
-					<key>name</key>
-					<string>keyword.control.tpl</string>
+					<key>begin</key>
+					<string>{(literal)}</string>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.control.tpl</string>
+						</dict>
+					</dict>
+					<key>contentName</key>
+					<string>text.html.basic.literal.tpl</string>
+					<key>end</key>
+					<string>{/(literal)}</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>text.html.basic</string>
+						</dict>
+					</array>
 				</dict>
 				<dict>
-					<key>match</key>
-					<string>\b(append-block|attribute_view_gui|cache-block|case|def|do|if|else|elseif|for|foreach|node_view_gui|switch|section|set-block|set|undef|while)\b</string>
+					<key>begin</key>
+					<string>{\*</string>
+					<key>end</key>
+					<string>\*}</string>
 					<key>name</key>
-					<string>keyword.control.tpl</string>
+					<string>comment.block.tpl</string>
 				</dict>
 				<dict>
-					<key>match</key>
-					<string>\b(and|or|eq|ne|gt|lt|ge|le|null|not|even|odd|not|mod|div|by|as|max|offset|reverse|sequence)\b</string>
-					<key>name</key>
-					<string>keyword.operator.other.tpl</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\$+[a-zA-Z0-9\.-_\[\]:]*</string>
-					<key>name</key>
-					<string>variable.tpl</string>
+					<key>begin</key>
+					<string>{</string>
+					<key>end</key>
+					<string>}</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>match</key>
+							<string>\b(as|def|else|elseif|foreach|if|switch|while|for|let|literal|section|section-else|undef)\b</string>
+							<key>name</key>
+							<string>keyword.control.tpl</string>
+						</dict>
+						<dict>
+							<key>match</key>
+							<string>\b(append-block|attribute_view_gui|cache-block|case|def|do|if|else|elseif|for|foreach|node_view_gui|switch|section|set-block|set|undef|while)\b</string>
+							<key>name</key>
+							<string>keyword.control.tpl</string>
+						</dict>
+						<dict>
+							<key>match</key>
+							<string>\b(and|or|eq|ne|gt|lt|ge|le|null|not|even|odd|not|mod|div|by|as|max|offset|reverse|sequence)\b</string>
+							<key>name</key>
+							<string>keyword.operator.other.tpl</string>
+						</dict>
+						<dict>
+							<key>match</key>
+							<string>\$+[a-zA-Z0-9\.-_\[\]:]*</string>
+							<key>name</key>
+							<string>variable.tpl</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#singlequote</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#doublequote</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#attribute</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#function</string>
+						</dict>
+					</array>
 				</dict>
 			</array>
 		</dict>
@@ -223,6 +191,27 @@
 				</dict>
 			</array>
 		</dict>
+		<key>insidexml</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>(&lt;)((?:([-_a-zA-Z0-9]+)((:)))?([-_a-zA-Z0-9:]+))(?=(\s[^&gt;]*)?&gt;&lt;/\2&gt;)</string>
+					<key>end</key>
+					<string>(&gt;)(&lt;)(/)(?:([-_a-zA-Z0-9]+)((:)))?([-_a-zA-Z0-9:]+)(&gt;)</string>
+					<key>name</key>
+					<string>meta.tag.no-content.xml</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#ezsmarty</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
 		<key>singlequote</key>
 		<dict>
 			<key>begin</key>
@@ -249,7 +238,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>(\$|\%)+[a-zA-Z0-9\.-_\[\]:]*</string>
+					<string>\$[a-zA-Z0-9\.-_\[\]:]*</string>
 					<key>name</key>
 					<string>variable.tpl</string>
 				</dict>
